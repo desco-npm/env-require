@@ -20,7 +20,7 @@ class EnvRequire {
       return require(path.join(rootDir, 'node_modules', name))
     }
 
-    return require(this.packages[name][this.env])
+    return require(path.join(rootDir, this.packages[this.env][name]))
   }
 }
 
