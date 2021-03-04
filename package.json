@@ -1,6 +1,6 @@
 {
   "name": "@desco/env-require",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Performs require of packages in different paths according to the NODE_ENV",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/descodifica/env-require.git"
+    "url": "git+https://github.com/desco-npm/env-require.git"
   },
   "keywords": [
     "require",
@@ -18,10 +18,7 @@
   ],
   "author": "Rafael A. R. Dias <eu@diasrafael.com.br>",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/descodifica/env-require/issues"
-  },
-  "homepage": "https://github.com/descodifica/env-require#readme",
+  "homepage": "https://github.com/desco-npm/env-require",
   "dependencies": {
     "dotenv": "^8.2.0"
   }

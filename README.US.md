@@ -1,6 +1,6 @@
 <div align="right">
-  <a href="README.US.md">
-    <img alt="Read in American English" src="https://img.shields.io/static/v1?label=&message=🇺🇸 Read in American English&color=red&style=for-the-badge" />
+  <a href="README.md">
+    <img alt="Ler em Portugês do Brasil" src="https://img.shields.io/static/v1?label=&message=🇧🇷 Ler em Português do Brasil&color=green&style=for-the-badge" />
   </a>
 </div>
 
@@ -9,60 +9,59 @@
     <td><img src="https://i.ibb.co/2WJy84f/descoenv-require.png"></td>
     <td>  
       <h1>@desco/env-require</h1>
-      Pacote NPM que permite executar o método require() para pacotes locais, dependendo do ambiente de desenvolvimento.
+      NPM package that allows you to execute the require () method for local packages, depending on the development environment.
       <br /><br />
       <div align="center">
-        <img alt="Licença MIT" src="https://img.shields.io/static/v1?label=Licença&message=MIT&color=green&style=for-the-badge">
-        <img alt="Versão 1.0.2" src="https://img.shields.io/static/v1?label=Versão&message=1.0.2&color=blue&style=for-the-badge">
+        <img alt="MIT License" src="https://img.shields.io/static/v1?label=License&message=MIT&color=green&style=for-the-badge">
+        <img alt="Version 1.0.2" src="https://img.shields.io/static/v1?label=Version&message=1.0.2&color=blue&style=for-the-badge">
       </div>
       <h4 align="center"> 
-        🚀 Pronto para uso! 🚀
+        🚀 Ready to use! 🚀
       </h4>
     </td>
   </tr>
 </table>
 
-> <a href="https://github.com/desco-npm" target="_blank">Veja outros projetos NPM aqui.</a>
+> <a href="https://github.com/desco-npm" target="_blank">See other NPM projects here.</a>
 
-> <a href="https://github.com/descoifica" target="_blank">Veja outros projetos aqui.</a>
-
----
-
-## 📋 Tabela de conteúdos
-
-* [🛠️ Tecnologias](#Tecnologias)
-* [⚙️ Instalação](#Instalação)
-* [📦 Importação](#Importação)
-* [📚 Como Usar](#Como-Usar)
+> <a href="https://github.com/descoifica" target="_blank">See other projects here.</a>
 
 ---
 
-<a name="Tecnologias"></a>
+## 📋 Table of Contents
 
+* [🛠️ Technology](#Technology)
+* [⚙️ Installation](#Installation)
+* [📦 Import](#Import)
+* [📚 How to use](#How-to-use)
 
-## 🛠️ Tecnologias
+---
 
-As seguintes tecnologias são utilizadas:
+<a name="Technology"></a>
+
+## 🛠️ Technology
+
+The following technologies are used:
 
 * [NodeJS](https://nodejs.org/en/);
 
 ---
 
-<a name="Instalação"></a>
+<a name="Installation"></a>
 
-## ⚙️ Instalação
+## ⚙️ Installation
 
 ```bash
 npm install --save @desco/env-require
 ```
 
-> Note que será necessário ter o **NPM** instalado para o comando funcionar.
+> Note that it will be necessary to have **NPM** installed for the command to work.
 
 ---
 
-<a name="Importação"></a>
+<a name="Import"></a>
 
-## 📦 Importação
+## 📦 Import
 
 ### Node
 
@@ -78,9 +77,9 @@ import envRequire from '@desco/env-require
 
 ---
 
-<a name="Como-Usar"></a>
+<a name="How-To-Use"></a>
 
-## 📚 Como Usar
+## 📚 How to use
 
 ```js
 const rootDir = __dirname
@@ -96,15 +95,15 @@ global.envRequire = require('@desco/env-require')(
 const myPackage = envRequire('my-package')
 ```
 
-* O `rootDir` deve apontar para a raiz do projeto;
-* O objeto JSON deve conter em suas chaves os nomes dos ambientes e em seus valores outro objeto contendo em sua chave o nome do pacote no **NPM** e o endereço do pacote no computador deste ambiente;
-* o `envRequire()` irá pegar o pacote do **NPM** caso o `NODE_ENV` seja *production* ou do computador caso seja o nome de um ambiente informado;
+* `RootDir` must point to the root of the project;
+* The JSON object must contain in its keys the names of the environments and in its values another object containing in its key the name of the package in **NPM** and the address of the package in the computer of this environment;
+* `envRequire ()` will get the **NPM** package if `NODE_ENV` is *production* or from the computer if it is the name of an informed environment;
 
-> O arquivo `NODE_ENV` deve estar no arquivo *.env* que possui as configurações do ambiente do projeto, <a href="https://blog.rocketseat.com.br/variaveis-ambiente-nodejs/" tarfet="_blank">saiba mais aqui</a>.
+> The `NODE_ENV` file must be in the *.env* file that has the settings of the project environment, <a href =" https://blog.rocketseat.com.br/variaveis-ambiente-nodejs/ "tarfet =" _blank "> learn more here </a>.
 
 ---
 
-## Autor
+## Author
 
 <table>
   <tr>
