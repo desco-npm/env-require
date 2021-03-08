@@ -13,7 +13,7 @@
       <br /><br />
       <div align="center">
         <img alt="Licença MIT" src="https://img.shields.io/static/v1?label=Licença&message=MIT&color=green&style=for-the-badge">
-        <img alt="Versão 1.0.2" src="https://img.shields.io/static/v1?label=Versão&message=1.0.2&color=blue&style=for-the-badge">
+        <img alt="Versão 1.0.3" src="https://img.shields.io/static/v1?label=Versão&message=1.0.3&color=blue&style=for-the-badge">
       </div>
       <h4 align="center"> 
         🚀 Pronto para uso! 🚀
@@ -73,7 +73,7 @@ const envRequire = require('@desco/env-require')
 ### Browse
 
 ```js
-import envRequire from '@desco/env-require
+import envRequire from '@desco/env-require'
 ```
 
 ---
