@@ -13,7 +13,7 @@
       <br /><br />
       <div align="center">
         <img alt="Licença MIT" src="https://img.shields.io/static/v1?label=Licença&message=MIT&color=green&style=for-the-badge">
-        <img alt="Versão 1.0.3" src="https://img.shields.io/static/v1?label=Versão&message=1.0.3&color=blue&style=for-the-badge">
+        <img alt="Versão 2.0.0" src="https://img.shields.io/static/v1?label=Versão&message=2.0.0&color=blue&style=for-the-badge">
       </div>
       <h4 align="center"> 
         🚀 Pronto para uso! 🚀
@@ -30,21 +30,20 @@
 
 ## 📋 Tabela de conteúdos
 
-* [🛠️ Tecnologias](#Tecnologias)
-* [⚙️ Instalação](#Instalação)
-* [📦 Importação](#Importação)
-* [📚 Como Usar](#Como-Usar)
+- [🛠️ Tecnologias](#Tecnologias)
+- [⚙️ Instalação](#Instalação)
+- [📦 Importação](#Importação)
+- [📚 Como Usar](#Como-Usar)
 
 ---
 
 <a name="Tecnologias"></a>
 
-
 ## 🛠️ Tecnologias
 
 As seguintes tecnologias são utilizadas:
 
-* [NodeJS](https://nodejs.org/en/);
+- [NodeJS](https://nodejs.org/en/);
 
 ---
 
@@ -64,16 +63,8 @@ npm install --save @desco/env-require
 
 ## 📦 Importação
 
-### Node
-
 ```js
-const envRequire = require('@desco/env-require')
-```
-
-### Browse
-
-```js
-import envRequire from '@desco/env-require'
+const envRequire = require("@desco/env-require");
 ```
 
 ---
@@ -83,24 +74,26 @@ import envRequire from '@desco/env-require'
 ## 📚 Como Usar
 
 ```js
-const rootDir = __dirname
+const rootDir = __dirname;
 
-global.envRequire = require('@desco/env-require')(
-  rootDir,
-  {
-    'development': { 
-      'my-package': '../../my-package',
-    },
-  })
+const { configEnvRequire, envRequire } = require("@desco/env-require");
 
-const myPackage = envRequire('my-package')
+configEnvRequire(__dirname, {
+  development: {
+    "@desco/atlas": "../../Descodifica/NPM/atlas/src",
+  },
+});
+
+const atlas = envRequire("@desco/atlas");
 ```
 
-* O `rootDir` deve apontar para a raiz do projeto;
-* O objeto JSON deve conter em suas chaves os nomes dos ambientes e em seus valores outro objeto contendo em sua chave o nome do pacote no **NPM** e o endereço do pacote no computador deste ambiente;
-* o `envRequire()` irá pegar o pacote do **NPM** caso o `NODE_ENV` seja *production* ou do computador caso seja o nome de um ambiente informado;
+> O `rootDir` deve apontar para a raiz do projeto;
 
-> O arquivo `NODE_ENV` deve estar no arquivo *.env* que possui as configurações do ambiente do projeto, <a href="https://blog.rocketseat.com.br/variaveis-ambiente-nodejs/" tarfet="_blank">saiba mais aqui</a>.
+> O `envRequire()` irá pegar o pacote do **NPM** caso o `NODE_ENV` seja _production_ ou do computador caso seja o nome de um ambiente informado;
+
+> O `envRequire` também pode ser capturado pelo retorno da função `configEnvRequire`
+
+> O arquivo `NODE_ENV` deve estar no arquivo _.env_ que possui as configurações do ambiente do projeto, <a href="https://blog.rocketseat.com.br/variaveis-ambiente-nodejs/" tarfet="_blank">saiba mais aqui</a>.
 
 ---
 

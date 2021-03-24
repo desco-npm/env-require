@@ -1,27 +1,22 @@
-require('dotenv').config()
-
 const path = require('path')
 
-class EnvRequire {
-  constructor () {
-    this.packages = {}
-    this.env = process.env.NODE_ENV || 'production'
-  }
+let packages = {}
+let rootDir = ''
 
-  add (rootDir, data) {
-    this.packages = data
-    return name => {
-      return this.envRequire(name, rootDir)
-    }
-  }
+require('dotenv').config()
 
-  envRequire (name, rootDir) {
-    if (this.env === 'production' || !this.packages[this.env] || !this.packages[this.env][name]) {
-      return require(path.join(rootDir, 'node_modules', name))
-    }
+const envRequire = (package) => {
+  const env = process.env.NODE_ENV
 
-    return require(path.join(rootDir, this.packages[this.env][name]))
-  }
+  return require(env === 'production' ? package : path.join(rootDir, packages[env][package]))
 }
 
-module.exports = (data, rootDir) => (new EnvRequire()).add(data, rootDir)
+module.exports = {
+  configEnvRequire: (root, pkg) => {
+    rootDir = root
+    packages = pkg
+
+    return envRequire
+  },
+  envRequire: envRequire,
+}
