@@ -13,7 +13,7 @@
       <br /><br />
       <div align="center">
         <img alt="Licença MIT" src="https://img.shields.io/static/v1?label=Licença&message=MIT&color=green&style=for-the-badge">
-        <img alt="Versão 2.0.0" src="https://img.shields.io/static/v1?label=Versão&message=2.0.0&color=blue&style=for-the-badge">
+        <img alt="Versão 2.1.0" src="https://img.shields.io/static/v1?label=Versão&message=2.1.0&color=blue&style=for-the-badge">
       </div>
       <h4 align="center"> 
         🚀 Pronto para uso! 🚀
@@ -89,7 +89,7 @@ const atlas = envRequire("@desco/atlas");
 
 > O `rootDir` deve apontar para a raiz do projeto;
 
-> O `envRequire()` irá pegar o pacote do **NPM** caso o `NODE_ENV` seja _production_ ou do computador caso seja o nome de um ambiente informado;
+> O `envRequire()` irá pegar o pacote do **NPM** caso o `NODE_ENV` seja _production_, caso contrário pegará o pacote no o diretório informado em `configEnvRequire` para o ambiente atual (se não houver informado, continuará o pacote do **NPM**)
 
 > O `envRequire` também pode ser capturado pelo retorno da função `configEnvRequire`
 

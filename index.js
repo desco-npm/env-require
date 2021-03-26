@@ -7,8 +7,9 @@ require('dotenv').config()
 
 const envRequire = (package) => {
   const env = process.env.NODE_ENV
+  const packageDir = path.normalize(packages[env][package])
 
-  return require(env === 'production' ? package : path.join(rootDir, packages[env][package]))
+  return require(!packageDir || env === 'production' ? package : path.join(rootDir, packageDir))
 }
 
 module.exports = {

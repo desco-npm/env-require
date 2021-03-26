@@ -13,7 +13,7 @@
       <br /><br />
       <div align="center">
         <img alt="MIT License" src="https://img.shields.io/static/v1?label=License&message=MIT&color=green&style=for-the-badge">
-        <img alt="Version 2.0.0" src="https://img.shields.io/static/v1?label=Version&message=2.0.0&color=blue&style=for-the-badge">
+        <img alt="Version 2.1.0" src="https://img.shields.io/static/v1?label=Version&message=2.1.0&color=blue&style=for-the-badge">
       </div>
       <h4 align="center"> 
         🚀 Ready to use! 🚀
@@ -89,7 +89,7 @@ const atlas = envRequire("@desco/atlas");
 
 > `RootDir` must point to the root of the project;
 
-> `envRequire ()` will get the **NPM** package if `NODE_ENV` is _production_ or from the computer if it is the name of an informed environment;
+> `EnvRequire ()` will take the ** NPM ** package if `NODE_ENV` is _production_, otherwise it will take the package from the directory provided in` configEnvRequire` for the current environment (if not informed, it will continue ** NPM ** package)
 
 > `EnvRequire` can also be captured by returning the` configEnvRequire` function
 
