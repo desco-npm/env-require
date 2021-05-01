@@ -6,10 +6,13 @@ let rootDir = ''
 require('dotenv').config()
 
 const envRequire = (package) => {
-  const env = process.env.NODE_ENV
+  const env = process.env.NODE_ENV || 'production'
+
+  if (env === 'production') return require(package)
+
   const packageDir = path.normalize(packages[env][package])
 
-  return require(!packageDir || env === 'production' ? package : path.join(rootDir, packageDir))
+  return require(!packageDir ? package : path.join(rootDir, packageDir))
 }
 
 module.exports = {
