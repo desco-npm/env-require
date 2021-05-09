@@ -1,26 +1,15 @@
-const path = require('path')
-
 let packages = {}
-let rootDir = ''
 
-require('dotenv').config()
+module.exports = (pkg, scope = 'default') => {
+  packages[scope] = pkg
 
-const envRequire = (package) => {
-  const env = process.env.NODE_ENV || 'production'
+  return (package) => {
+    if (!packages[scope][package]) {
+      console.error(`${package} not found in scope ${scope}`)
 
-  if (env === 'production') return require(package)
+      process.exit()
+    }
 
-  const packageDir = path.normalize(packages[env][package])
-
-  return require(!packageDir ? package : path.join(rootDir, packageDir))
-}
-
-module.exports = {
-  configEnvRequire: (root, pkg) => {
-    rootDir = root
-    packages = pkg
-
-    return envRequire
-  },
-  envRequire: envRequire,
+    return packages[scope][package]()
+  }
 }

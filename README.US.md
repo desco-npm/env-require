@@ -9,11 +9,13 @@
     <td><img src="https://i.ibb.co/2WJy84f/descoenv-require.png"></td>
     <td>  
       <h1>@desco/env-require</h1>
-      NPM package that allows you to execute the require () method for local packages, depending on the development environment.
+        NPM package that allows you to perform package imports available on the local machine instead of the one available in NPM.
+       <br>
+       Useful for the developer who is using his own package and wants to make changes without having to publish to test on the spot.
       <br /><br />
       <div align="center">
         <img alt="MIT License" src="https://img.shields.io/static/v1?label=License&message=MIT&color=green&style=for-the-badge">
-        <img alt="Version 2.1.0" src="https://img.shields.io/static/v1?label=Version&message=2.1.0&color=blue&style=for-the-badge">
+        <img alt="Version 3.0.0" src="https://img.shields.io/static/v1?label=Version&message=3.0.0&color=blue&style=for-the-badge">
       </div>
       <h4 align="center"> 
         🚀 Ready to use! 🚀
@@ -34,16 +36,7 @@
 - [⚙️ Installation](#Installation)
 - [📦 Import](#Import)
 - [📚 How to use](#How-to-use)
-
----
-
-<a name="Technology"></a>
-
-## 🛠️ Technology
-
-The following technologies are used:
-
-- [NodeJS](https://nodejs.org/en/);
+- [🗂️ Scope](#Scope)
 
 ---
 
@@ -63,8 +56,16 @@ npm install --save @desco/env-require
 
 ## 📦 Import
 
+### Node
+
 ```js
-const envRequire = require("@desco/env-require");
+const configEnvRequire = require("@desco/env-require")
+```
+
+### Front
+
+```js
+import configEnvRequire from "@desco/env-require"
 ```
 
 ---
@@ -73,27 +74,60 @@ const envRequire = require("@desco/env-require");
 
 ## 📚 How to use
 
+### dynamicImports_dev.js
+
+
 ```js
-const rootDir = __dirname;
-
-const { configEnvRequire, envRequire } = require("@desco/env-require");
-
-configEnvRequire(__dirname, {
-  development: {
-    "@desco/atlas": "../../Descodifica/NPM/atlas/src",
-  },
-});
-
-const atlas = envRequire("@desco/atlas");
+module.exports = {
+  '@desco/atlas': () => require('../../atlas'),
+}
 ```
 
-> `RootDir` must point to the root of the project;
+### dynamicImports.js
+```js
+module.exports = {
+  '@desco/atlas': () => require('@desco/atlas'),
+  ...require('./dynamicImports_dev')
+}
+```
 
-> `EnvRequire ()` will take the ** NPM ** package if `NODE_ENV` is _production_, otherwise it will take the package from the directory provided in` configEnvRequire` for the current environment (if not informed, it will continue ** NPM ** package)
+### index.js
+```js
+const envRequire = require('./dynamicImports')(packages)
 
-> `EnvRequire` can also be captured by returning the` configEnvRequire` function
+envRequire('@desco/atlas')
+```
 
-> The `NODE_ENV` file must be in the _.env_ file that has the settings of the project environment, <a href =" https://blog.rocketseat.com.br/variaveis-ambiente-nodejs/ "tarfet =" \_blank "> learn more here </a>.
+> In `dynamicImports_dev.js` export an object containing in your keys the names of the packages and in their values ​​a function containing the loading of the local version of the package.
+
+> In `dynamicImports.js` export an object containing the names of the packages in its keys and in its values ​​a function containing the loading of the NPM version of the package.
+
+> At the end of the `dynamicImports.js` object, concatenate the importer values ​​of` dynamicImports_dev.js`, so the existing packages will overwrite the previous ones.
+
+> Import `envRequire` already running and passing the imported object from` dynamicImports.js`, that way it will already know which packages it will work with.
+
+> `DynamicImports_dev.js` should only be versioned with an empty object so that NPM packages are always used in production. After empty versioning, add `dynamicImports_dev.js` to` .gitignore` so that the changes for each programmer are not sent to production.
+
+> Make sure the local packages have the packages installed! (`npm install`)
+
+> Now just use `envRequire` instead of` require` / `import`!
+
+---
+
+<a name="Scope"></a>
+## 🗂️ Scope
+
+Eventually you may want to have two instances of `envRequire`, to do this just pass a second parameter with the name of the scope of each instance!
+
+```js
+const envRequire = require('./dynamicImports')(packages, 'main')
+const envRequire2 = require('./dynamicImports')(packages, 'second')
+
+envRequire('@desco/atlas')
+envRequirew('@desco/urano')
+```
+
+> By default the scope name is `default`, so there is no need to pass a scope if you are using a single instance.
 
 ---
 

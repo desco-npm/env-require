@@ -9,11 +9,13 @@
     <td><img src="https://i.ibb.co/2WJy84f/descoenv-require.png"></td>
     <td>  
       <h1>@desco/env-require</h1>
-      Pacote NPM que permite executar o método require() para pacotes locais, dependendo do ambiente de desenvolvimento.
+      Pacote NPM que permite executar importações de pacotes disponíveis na máquina local ao invés do disponível no NPM. 
+      <br>
+      Útil para o desenvolvedor que esta usando seu próprio pacote e deseja fazer mudanças sem precisar publicar para testar na hora.
       <br /><br />
       <div align="center">
         <img alt="Licença MIT" src="https://img.shields.io/static/v1?label=Licen%C3%A7a&message=MIT&color=green&style=for-the-badge">
-        <img alt="Versão 2.1.0" src="https://img.shields.io/static/v1?label=Vers%C3%A3o&message=2.1.0&color=blue&style=for-the-badge">
+        <img alt="Versão 3.0.0" src="https://img.shields.io/static/v1?label=Vers%C3%A3o&message=3.0.0&color=blue&style=for-the-badge">
       </div>
       <h4 align="center"> 
         🚀 Pronto para uso! 🚀
@@ -30,20 +32,10 @@
 
 ## 📋 Tabela de conteúdos
 
-- [🛠️ Tecnologias](#Tecnologias)
 - [⚙️ Instalação](#Instalação)
 - [📦 Importação](#Importação)
 - [📚 Como Usar](#Como-Usar)
-
----
-
-<a name="Tecnologias"></a>
-
-## 🛠️ Tecnologias
-
-As seguintes tecnologias são utilizadas:
-
-- [NodeJS](https://nodejs.org/en/);
+- [🗂️ Escopo](#Escopo)
 
 ---
 
@@ -63,8 +55,16 @@ npm install --save @desco/env-require
 
 ## 📦 Importação
 
+### Node
+
 ```js
-const envRequire = require("@desco/env-require");
+const configEnvRequire = require("@desco/env-require")
+```
+
+### Front
+
+```js
+import configEnvRequire from "@desco/env-require"
 ```
 
 ---
@@ -73,27 +73,60 @@ const envRequire = require("@desco/env-require");
 
 ## 📚 Como Usar
 
+### dynamicImports_dev.js
+
+
 ```js
-const rootDir = __dirname;
-
-const { configEnvRequire, envRequire } = require("@desco/env-require");
-
-configEnvRequire(__dirname, {
-  development: {
-    "@desco/atlas": "../../Descodifica/NPM/atlas/src",
-  },
-});
-
-const atlas = envRequire("@desco/atlas");
+module.exports = {
+  '@desco/atlas': () => require('../../atlas'),
+}
 ```
 
-> O `rootDir` deve apontar para a raiz do projeto;
+### dynamicImports.js
+```js
+module.exports = {
+  '@desco/atlas': () => require('@desco/atlas'),
+  ...require('./dynamicImports_dev')
+}
+```
 
-> O `envRequire()` irá pegar o pacote do **NPM** caso o `NODE_ENV` seja _production_, caso contrário pegará o pacote no o diretório informado em `configEnvRequire` para o ambiente atual (se não houver informado, continuará o pacote do **NPM**)
+### index.js
+```js
+const envRequire = require('./dynamicImports')(packages)
 
-> O `envRequire` também pode ser capturado pelo retorno da função `configEnvRequire`
+envRequire('@desco/atlas')
+```
 
-> O arquivo `NODE_ENV` deve estar no arquivo _.env_ que possui as configurações do ambiente do projeto, <a href="https://blog.rocketseat.com.br/variaveis-ambiente-nodejs/" tarfet="_blank">saiba mais aqui</a>.
+> No `dynamicImports_dev.js` exporte um objeto contendo em suas chaves os nomes dos pacotes e em seus valores uma função contendo o carregamento da versão local do pacote.
+
+> No `dynamicImports.js` exporte um objeto contendo em suas chaves os nomes dos pacotes e em seus valores uma função contendo o carregamento da versão NPM do pacote. 
+
+> Ao fim do objeto do `dynamicImports.js` concatene os valores importador de `dynamicImports_dev.js`, dessa forma os pacotes existentes irão sobrescrever os anteriores.
+
+> Importe o `envRequire` já executando e passando o objeto importado de `dynamicImports.js`, dessa forma ele já irá saber com quais pacotes irá trabalhar.
+
+> O `dynamicImports_dev.js` só deve ser versionado com objeto vazio de forma que em produção sempre seja usado os pacotes NPM. Após versionar vazio, adicione o `dynamicImports_dev.js` ao `.gitignore` para que as mudanças de cada programador não sejam enviadas para produção.
+
+> Garanta que os pacotes locais estejam com os pacotes instalados! (`npm install`)
+
+> Agora é só usar o `envRequire` no lugar do `require`/`import`!
+
+---
+
+<a name="Escopo"></a>
+## 🗂️ Escopo
+
+Eventualmente você pode querer ter duas instâncias do `envRequire`, para isso basta passar um segundo parâmetro com o nome do escopo de cada instância!
+
+```js
+const envRequire = require('./dynamicImports')(packages, 'main')
+const envRequire2 = require('./dynamicImports')(packages, 'second')
+
+envRequire('@desco/atlas')
+envRequirew('@desco/urano')
+```
+
+> Por padrão o nome do escopo é `default`, sendo assim não é precisa passar um escopo caso esteja usando uma única instância.
 
 ---
 
