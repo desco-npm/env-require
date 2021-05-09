@@ -15,7 +15,7 @@
       <br /><br />
       <div align="center">
         <img alt="Licença MIT" src="https://img.shields.io/static/v1?label=Licen%C3%A7a&message=MIT&color=green&style=for-the-badge">
-        <img alt="Versão 3.0.0" src="https://img.shields.io/static/v1?label=Vers%C3%A3o&message=3.0.0&color=blue&style=for-the-badge">
+        <img alt="Versão 3.0.1" src="https://img.shields.io/static/v1?label=Vers%C3%A3o&message=3.0.1&color=blue&style=for-the-badge">
       </div>
       <h4 align="center"> 
         🚀 Pronto para uso! 🚀
@@ -92,7 +92,7 @@ module.exports = {
 
 ### index.js
 ```js
-const envRequire = require('./dynamicImports')(packages)
+const envRequire = require('@desco/env-require')(packagesDynamicImports)
 
 envRequire('@desco/atlas')
 ```
@@ -123,7 +123,7 @@ const envRequire = require('./dynamicImports')(packages, 'main')
 const envRequire2 = require('./dynamicImports')(packages, 'second')
 
 envRequire('@desco/atlas')
-envRequirew('@desco/urano')
+envRequire2('@desco/urano')
 ```
 
 > Por padrão o nome do escopo é `default`, sendo assim não é precisa passar um escopo caso esteja usando uma única instância.

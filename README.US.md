@@ -15,7 +15,7 @@
       <br /><br />
       <div align="center">
         <img alt="MIT License" src="https://img.shields.io/static/v1?label=License&message=MIT&color=green&style=for-the-badge">
-        <img alt="Version 3.0.0" src="https://img.shields.io/static/v1?label=Version&message=3.0.0&color=blue&style=for-the-badge">
+        <img alt="Version 3.0.1" src="https://img.shields.io/static/v1?label=Version&message=3.0.1&color=blue&style=for-the-badge">
       </div>
       <h4 align="center"> 
         🚀 Ready to use! 🚀
@@ -93,7 +93,7 @@ module.exports = {
 
 ### index.js
 ```js
-const envRequire = require('./dynamicImports')(packages)
+const envRequire = require('@desco/env-require')(packagesDynamicImports)
 
 envRequire('@desco/atlas')
 ```
@@ -120,11 +120,11 @@ envRequire('@desco/atlas')
 Eventually you may want to have two instances of `envRequire`, to do this just pass a second parameter with the name of the scope of each instance!
 
 ```js
-const envRequire = require('./dynamicImports')(packages, 'main')
-const envRequire2 = require('./dynamicImports')(packages, 'second')
+const envRequire = require('@desco/env-require')(packagesDynamicImports, 'main)
+const envRequire = require('@desco/env-require')(packagesDynamicImports, 'second')
 
 envRequire('@desco/atlas')
-envRequirew('@desco/urano')
+envRequire2('@desco/urano')
 ```
 
 > By default the scope name is `default`, so there is no need to pass a scope if you are using a single instance.
