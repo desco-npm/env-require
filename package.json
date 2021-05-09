@@ -1,6 +1,6 @@
 {
   "name": "@desco/env-require",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Performs require of packages in different paths according to the NODE_ENV",
   "main": "index.js",
   "scripts": {
